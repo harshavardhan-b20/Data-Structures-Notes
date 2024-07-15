@@ -1,0 +1,125 @@
+/* Algorithms
+   containers
+   functions
+   iterators 
+*/
+PAIR : 
+pair <int,int> p= {1,3};
+//to access values of p
+p.first //1
+p.second //3
+//nested pair : 
+pair <int,pair<int,int>> p = {1,{2,3}};
+// to access values
+p.second.first //2
+p.second.second //3
+// pair can act as  a data type ex: 
+pair<int,int> arr[]={{1,2},{2,4},{5,9}};
+//same array indexing is follows
+// to access values of array
+arr[1].second //4
+
+
+VECTOR : 
+// it's a container similar to array's used to store values (whenever the size of elements is huge)
+vector <int> v;
+v.push_back(1); // add's 1 to vector'v' 
+v.emplace_back(2); // similar to push_back . it dynamically increase's size of vector by  adding the element. also faster than  push_back().
+
+//vector accepts PAIR as data type
+vector <pair<int,int>> v;
+v.push_back({1,2});
+v.emplace_back(4,8);  // it automatically identify's as pair without '{}' barces.
+
+//vector's size can be predefined with value's initialized. by using push_back()/emplace_back(), can add size dynamically. 
+vector <int> v(5,100); //here '5' place is for size.  '100' place is for elements in vector . o/p -> (100,100,100,100,100).
+vector <int> v(5); // as element's values is not given, it prints the values as either garbage value or  (0,0,0,0,0).
+
+// vector's can copy from other.
+vector <int> v(5,20);
+vector <int> v1(v); // it copies the values of vector 'v' to 'v1'.
+
+// using iterator's we can access the value's of elements in vector
+vector <int> :: iterator it=v.begin(); // 'it' is a user variable , begin() is to point begining of vector
+//to print the value of element that 'it' is pointing need to use  '*()' address of that pointer . ex :
+cout<< *(it) ;
+/* similar to begin(), have end() . it point's the iterator next to last element in vector . in order to get the value of last element of vector 
+need to decrement the iterator (it--). ll'y have rend() -> points to before the begin element.
+ 												 rbegin() -> points to last elements. */
+ 												 
+// sample to print the values in vector
+for(auto it=v.begin(); it!=v.end(); it++){
+	cout<<*(it)<<endl;
+}
+
+// similar to above program we can also use another method to get the values of elements by using "for-each" loop 
+for(auto it :v){
+	cout<<it;
+}
+
+//to delete element
+v.erase();
+v.erase(start,end); // to delete particular elements , need to give its begin, end position(end ante eppudu next ki point chesidi).
+v.erase(v.begin()+1)// Example : delete's element next to begin (ikkada start value icham)
+v.erase(v.begin()+1,v.begin()+3) // Example : both start and end values are provided 
+
+// insert function
+vector <int> v(2,10); // -> {10,10}
+v.insert(v.begin(),30); // -> {30,10,10}
+v.insert(v.begin()+1,2,5); // -> {30,5,5,10,10}
+
+v.size(); //prints size of vector
+v.pop_back(); //pop's the last element. ex: {10,20} -> {10}
+v.swap(); // swaps vector's ex: v1={10,20}, v2={40,90} -> v1.swap(v2) = v2 -> v1, v1 -> v2
+v.clear(); // erase's entire vector
+v.empty(); //boolean values to check vector is empty or not 
+
+LIST : // list <int> ls;
+/* it is similar to vector . all the functions of vector is used for list. only diff b/w list and vector is list can insert values at the start
+using push_front(),  emplace_front()  functions. ex: ls.push_front(5); [prev {4,3}] -> {5,4,3}. 
+IMPORTANT : insert function is costiler in vector's , to overcome that , using this push_front() operation's for list. */
+
+DEQUE : // deque <int> de;
+/* similar to list,vector . all functions are same here too . */
+
+STACK : // stack <int> st;   --> LIFO
+st.push(); // to add elements 
+st.emplace(); // similar to push() , to add.
+st.top(); // print's top element of stack
+st.pop(); // delete's top element
+st.empty(); // to check stack is empty or not
+st.size(); // print's size of stack
+stack<int> st1,st2;
+st1.swap(st2); // swaping stack values
+
+QUEUE : // queue <int> qe;   --> FIFO
+/*  functions are similar to stack  */
+
+PRIORITY QUEUE : 
+priority_queue <int> pq; // all functions are same here , general syntax a.k.a MAX HEAP
+//IMPORTANT : in priority queue values are stored in tree structure based on their priority's not as linear . ex : [9,7,5,3,1] 
+//minimum heap : to get the minimum value as in top of queue.  SYNTAX : 
+priority_queue <int, vector<int>, greater<int>> pq; //min heap syntax
+
+SET : // it sort's the elememts. it only takes unique values
+set<int>st;
+st.insert(); // to add elements into set
+st.emplace(); // similar to insert
+auto it= st.find(6);  // find's the iterator it's pointing
+st.erase(); // to delete element.  takes logarithmic time. it can have start, end points.
+int cnt= st.count(1); // -> if value is present it return's 1, otherwise 0.
+// lowerbound(), upperbound() are present
+
+MULTI SET :
+// it only sort's the element , not take unique values as set. same functions as set
+multiset <int> ms;
+ms.erase(1); // it erase's all 1's
+//to overcome erase() issue , use find() as it point to the address
+ms.erase(ms.find(1)); // now it only erase the element where iterator is pointing
+
+UNORDERED SET :
+// it takes only unique values but not stores in sorted way as set.
+// O(1) time complexity for all operations
+// same functions as set , excluding lower&upper bound's.
+
+//map's,sort(),comp[comparator] function's are mentioned in details in video from 47:00 min here https://youtu.be/RRVYpIET_RU?si=VV1pJ4NN-hRNsZIt
